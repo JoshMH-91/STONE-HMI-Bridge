@@ -3,7 +3,7 @@ Library for sending JSON commands to a STONE HMI with simplified functions
 <br/><br/>
 🚧 This Library and page is under construction and only includes basic functionality.
 <br/>
-<h3>📚 Library Functions currenlty supported</h3>
+<h2>📚 Library Functions currenlty supported</h2>
 These functions only return the JSON string you must send them through a serial print command to your HMI.
 <br/>
 <br/>
@@ -13,29 +13,29 @@ Make sure to include libarary and initialize in your code with these commands:<b
 <code>StoneMCUtoHMI myHMI;</code>
 <br/>
 <br/>
-•  Update label as value or text<br/>
+<h2>•  Update label as value or text</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(myHMI.update_label("label1", "value", 100));</code>
 <br/>
 &emsp; <code>mySerial.println(myHMI.update_label("label1", "text", "your text here"));</code>
 <br/>
 <br/>
-•  Update multi-line text<br/>
+<h2>•  Update multi-line text</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(set_mledit_text("MyWidget", "Example text"));</code>
 <br/>
 <br/>
-•  Update graph by pushing data<br/>
+<h2>•  Update graph by pushing data</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(update_graph("MyLineSeries", 42));</code>
 <br/>
 <br/>
-•  Update screen brightness<br/>
+<h2>•  Update screen brightness</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(set_brightness(75));</code>
 <br/>
 <br/>
-•  Update volume <br/>
+<h2>•  Update volume</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(set_volume("set_vol", 20));</code> (sets volume to 20%)<br/>
 &emsp; <code>mySerial.println(set_volume("set_vol_inc", 5));</code> (increases volume by 5%)<br/>
