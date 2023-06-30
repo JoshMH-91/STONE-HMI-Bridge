@@ -4,7 +4,7 @@ Library for sending JSON commands to a STONE HMI with simplified functions
 🚧 This Library and page is under construction and only includes basic functionality.
 <br/>
 <h3>📚 Library Functions currenlty supported</h3>
-These functions only return the JSON spring you must send them through a serial print command to your HMI.
+These functions only return the JSON string you must send them through a serial print command to your HMI.
 <br/>
 <br/>
 •  Update label as value or text<br/>
