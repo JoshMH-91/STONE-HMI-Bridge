@@ -7,6 +7,12 @@ Library for sending JSON commands to a STONE HMI with simplified functions
 These functions only return the JSON string you must send them through a serial print command to your HMI.
 <br/>
 <br/>
+Make sure to include libarary and initialize in your code with these commands:<br/>
+<code>#include "StoneMCUtoHMI.h"</code>
+<br/>
+<code>StoneMCUtoHMI myHMI;</code>
+<br/>
+<br/>
 •  Update label as value or text<br/>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(myHMI.update_label("label1", "value", 100));</code>
