@@ -41,6 +41,9 @@ Make sure to include libarary and initialize in your code with these commands:<b
 &emsp; <code>mySerial.println(set_volume("set_vol_inc", 5));</code> (increases volume by 5%)<br/>
 &emsp; <code>mySerial.println(set_volume("set_vol_dec", 5));</code> (decreases volume by 5%)<br/>
 &emsp; <code>mySerial.println(set_volume("set_mute", true));</code> (mutes volume can be true or false)
+<h2>•  Update Radio Button</h2>
+&emsp; example function call:<br/>
+&emsp; <code>mySerial.println(radio_button("MyRadioButton", true));</code> (sets radio button state to true or false)<br/>
 <br/>
 <br/>
 <a href="https://www.buymeacoffee.com/JoshMH91" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="50" width="200"></a>
