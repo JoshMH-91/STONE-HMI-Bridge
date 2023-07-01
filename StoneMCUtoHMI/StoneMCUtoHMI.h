@@ -6,13 +6,14 @@
 class StoneMCUtoHMI {
 public:
 
-  /* This function allows you to update a label on the HMI with a given text or value.
-  * Parameters:
-  * - label: The name of the label to update.
-  * - type: The type of the update, it can be "text" or "value".
-  * - value: The new value or text for the label.
-  * 
-  * Example:
+  /**
+  * This function allows you to update a label on the HMI with a given text or value.
+  *
+  * @param label The name of the label to update.
+  * @param type The type of the update. It can be "text" or "value".
+  * @param value The new value or text for the label.
+  *
+  * @example
   * update_label("MyLabel", "text", "Hello World");
   */
 
@@ -32,13 +33,13 @@ String update_label(const String& label, const String& type, const T& value) {
     return labelCode;
 }
 
-
-  /* This function sets the text of a multi-line edit widget on the HMI.
-  * Parameters:
-  * - widget: The name of the multi-line edit widget to update.
-  * - text: The new text to set.
-  * 
-  * Example:
+  /**
+  * This function sets the text of a multi-line edit widget on the HMI.
+  *
+  * @param widget The name of the multi-line edit widget to update.
+  * @param text The new text to set.
+  *
+  * @example
   * set_mledit_text("MyWidget", "Example text");
   */
 
@@ -52,12 +53,13 @@ String update_label(const String& label, const String& type, const T& value) {
     return setMlEdit;
   }
 
-  /* This function updates a graph on the HMI with a new data point.
-  * Parameters:
-  * - lineSeries: The name of the line series to update.
-  * - value: The new data point.
-  * 
-  * Example:
+  /**
+  * This function updates a graph on the HMI with a new data point.
+  *
+  * @param lineSeries The name of the line series to update.
+  * @param value The new data point.
+  *
+  * @example
   * update_graph("MyLineSeries", 42);
   */
 
@@ -71,12 +73,13 @@ String update_label(const String& label, const String& type, const T& value) {
     return graphCode;
   }
 
-  /* This function sets the brightness of the HMI system.
-  * Parameters:
-  * - value: The new brightness level.
-  * 
-  * Example:
-  * set_brightness(255); // maximum brightness
+  /**
+  * This function sets the brightness of the HMI system.
+  *
+  * @param value The new brightness level.
+  *
+  * @example
+  * set_brightness(50); // Set maximum brightness
   */
 
   template <typename T>
@@ -87,14 +90,15 @@ String update_label(const String& label, const String& type, const T& value) {
     return setBrightness;
   }
 
-  /* This function sets the volume or mutes/unmutes the HMI system.
-  * Parameters:
-  * - command: The command to execute, it can be "set_vol", "set_vol_inc", "set_vol_dec", or "set_mute".
-  * - value: The new volume level, or true/false for the "set_mute" command.
-  * 
-  * Example:
-  * set_volume("set_vol", 20); // set volume level to 20
-  * set_volume("set_mute", true); // mute the system
+  /**
+  * This function sets the volume or mutes/unmutes the HMI system.
+  *
+  * @param command The command to execute. It can be "set_vol", "set_vol_inc", "set_vol_dec", or "set_mute".
+  * @param value The new volume level, or true/false for the "set_mute" command.
+  *
+  * @example
+  * set_volume("set_vol", 20); // Set volume level to 20
+  * set_volume("set_mute", true); // Mute the system
   */
 
   template <typename T>
@@ -117,12 +121,13 @@ String update_label(const String& label, const String& type, const T& value) {
     return setVolume;
   }
 
-  /* This function updates the maximum value of a progress circle on the HMI.
-  * Parameters:
-  * - widget: The name of the progress circle widget to update.
-  * - max: The new maximum value.
+  /**
+  * This function updates the maximum value of a progress circle on the HMI.
+  *
+  * @param widget The name of the progress circle widget to update.
+  * @param max The new maximum value.
   * 
-  * Example:
+  * @example
   * update_progress_circle("MyProgressCircle", 100);
   */
 
@@ -132,6 +137,32 @@ String update_label(const String& label, const String& type, const T& value) {
     command += "\",\"max\":";
     command += String(max);
     command += "}>ET";
+    return command;
+  }
+
+  /**
+  * This function generates a command string to set the state of a radio button widget on the HMI.
+  *
+  * @param widget The name of the radio button widget to update.
+  * @param state The new state of the radio button (true for selected, false for unselected).
+  * 
+  * @return The command string to be sent via serial communication to the HMI.
+  *
+  * @example
+  * // Set the radio button named "MyRadioButton" to the selected state
+  * String command = radio_button("MyRadioButton", true);
+  * Serial.println(command);
+  *
+  * @note The widget name should match the name of the radio button widget on the HMI.
+  */
+
+  String radio_button(const String& widget, bool state){
+    String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"radio_button\",\"widget\":\"";
+    command += widget;
+    command += "\",";
+    command += state;
+    command += "}>ET";
+    
     return command;
   }
 };
