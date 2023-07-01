@@ -158,17 +158,27 @@ public:
     String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"radio_button\",\"widget\":\"";
     command += widget;
     command += "\",\"value\":";
-    command += state;
+    command += String(state);
     command += "}>ET";
-    
+
     return command;
   }
 
   String update_switch(const String& widget, bool state){
-    String command = <"ST{\"cmd_code\":\"set_value\",\"type\":\"switch\",\"widget\":\"";
+    String command = "ST{\"cmd_code\":\"set_value\",\"type\":\"switch\",\"widget\":\"";
     command += widget;
-    command += "\",\"value\":"
-    command += state;
+    command += "\",\"value\":";
+    command += String(state);
+    command += "}>ET";
+
+    return command;
+  }
+
+  String update_check_button(const String& widget, bool state){
+    String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"check_button\",\"widget\":\"";
+    command += widget;
+    command += "\",\"value\":";
+    command += String(state);
     command += "}>ET";
 
     return command;
