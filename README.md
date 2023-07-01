@@ -47,6 +47,9 @@ Make sure to include libarary and initialize in your code with these commands:<b
 <h2>•  Update Switch</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(update_switch("MySwitch", true));</code> (sets switch state to true or false)<br/>
+<h2>•  Update Check Button</h2>
+&emsp; example function call:<br/>
+&emsp; <code>mySerial.println(update_check_button("MyCheckButton", true));</code> (sets check button state to true or false)<br/>
 <br/>
 <br/>
 <a href="https://www.buymeacoffee.com/JoshMH91" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="50" width="200"></a>
