@@ -119,22 +119,62 @@ public:
     return updateVolume;
   }
 
+    /**
+  * This function updates the maximum value of a progress bar on the HMI.
+  *
+  * @param value set_max or set_value
+  * @param widget The name of the progress circle widget to update.
+  * @param set_value The new maximum value or progress circles current progress value.
+  * 
+  * @example
+  * update_progress_bar("set_max, "MyProgressBar", 100);
+  * update_progress_bar("set_value, "MyProgressBar", 100);
+  */
+
+  String update_progress_bar(const String& value, const String& widget, int set_value){
+    String command = "ST<{\"cmd_code\":\"";
+    command += "\",\"type\":\"progress_bar\",\"widget\":\"";
+    command += widget;
+    command += "\"";
+      if (value == "set_value") {
+        command += ",\"value\":";
+      }
+      else if (value == "set_max") {
+        command += ",\"max\":";
+      }
+      command += String(set_value);
+      command += "}>ET";
+
+      return command;
+  }
+
   /**
   * This function updates the maximum value of a progress circle on the HMI.
   *
+  * @param value set_max or set_value
   * @param widget The name of the progress circle widget to update.
-  * @param max The new maximum value.
+  * @param set_value The new maximum value or progress circles current progress value.
   * 
   * @example
-  * update_progress_circle("MyProgressCircle", 100);
+  * update_progress_circle("set_max, "MyProgressCircle", 100);
+  * update_progress_circle("set_value, "MyProgressCircle", 100);
   */
 
-  String update_progress_circle(const String& widget, int max) {
-    String command = "ST<{\"cmd_code\":\"set_max\",\"type\":\"progress_circle\",\"widget\":\"";
+  String update_progress_circle(const String& value, const String& widget, int set_value) {
+    String command = "ST<{\"cmd_code\":\"";
+    command += value;
+    command += "\",\"type\":\"progress_circle\",\"widget\":\"";
     command += widget;
-    command += "\",\"max\":";
-    command += String(max);
+    command += "\"";
+    if (value == "set_value") {
+      command += ",\"value\":";
+    }
+    else if (value == "set_max") {
+      command += ",\"max\":";
+    }
+    command += String(set_value);
     command += "}>ET";
+
     return command;
   }
 
