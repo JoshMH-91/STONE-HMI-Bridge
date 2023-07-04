@@ -1,5 +1,5 @@
-# Stone-MCU-to-HMI-Library
-Library for sending JSON commands to a STONE HMI with simplified functions
+# Stone-HMI-Bridge-Library
+This library provides simplified functions for sending JSON commands to a STONE HMI and parsing data.
 <br/><br/>
 🚧 This Library and page is under construction and only includes basic functionality.
 <br/>
@@ -8,11 +8,14 @@ These functions only return the JSON string you must send them through a serial 
 <br/>
 <br/>
 Make sure to include libarary and initialize in your code with these commands:<br/>
-<code>#include "StoneMCUtoHMI.h"</code>
+<code>#include "StoneMhiBridge.h"</code>
 <br/>
-<code>StoneMCUtoHMI myHMI;</code>
+<code>StoneHmiBridge myHMI;</code>
 <br/>
 <br/>
+<h2>•  🖥️ Parse incoming command and data</h2>
+&emsp; example function call:<br/>
+&emsp; <code>myHMI.parseData(mySerial, cmd, data)</code></br>
 <h2>•  🏷️ Update Label as value or text</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(myHMI.update_label("label1", "value", 100));</code>
@@ -52,12 +55,12 @@ Make sure to include libarary and initialize in your code with these commands:<b
 &emsp; <code>mySerial.println(update_check_button("MyCheckButton", true));</code> (sets check button state to true or false)<br/>
 <h2>•  ➖ Update Progress Bar</h2>
 &emsp; example function call:<br/>
-&emsp; <code>mySerial.println(update_progress_bar("set_max, "MyProgressBar", 100);</code> (set max value of progress bar)<br/>
-&emsp; <code>mySerial.println(update_progress_bar("set_value, "MyProgressBar", 100);</code> (set current value of progress bar)<br/>
+&emsp; <code>mySerial.println(update_progress_bar("set_max", "MyProgressBar", 100);</code> (set max value of progress bar)<br/>
+&emsp; <code>mySerial.println(update_progress_bar("set_value", "MyProgressBar", 100);</code> (set current value of progress bar)<br/>
 <h2>•  🕛 Update Progress Circle</h2>
 &emsp; example function call:<br/>
-&emsp; <code>mySerial.println(update_progress_circle("set_max, "MyProgressCircle", 100);</code> (set max value of progress circle)<br/>
-&emsp; <code>mySerial.println(update_progress_circle("set_value, "MyProgressCircle", 100);</code> (set current value of progress circle)<br/>
+&emsp; <code>mySerial.println(update_progress_circle("set_max", "MyProgressCircle", 100);</code> (set max value of progress circle)<br/>
+&emsp; <code>mySerial.println(update_progress_circle("set_value", "MyProgressCircle", 100);</code> (set current value of progress circle)<br/>
 <br/>
 <br/>
 <a href="https://www.buymeacoffee.com/JoshMH91" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="50" width="200"></a>
