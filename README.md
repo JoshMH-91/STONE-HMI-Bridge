@@ -8,7 +8,7 @@ These functions only return the JSON string you must send them through a serial 
 <br/>
 <br/>
 Make sure to include libarary and initialize in your code with these commands:<br/>
-<code>#include "StoneMhiBridge.h"</code>
+<code>#include "StoneHmiBridge.h"</code>
 <br/>
 <code>StoneHmiBridge myHMI;</code>
 <br/>
