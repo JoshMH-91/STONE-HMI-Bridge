@@ -56,7 +56,7 @@ public:
   */
 
   template <typename T>
-  String update_label(const String& label, const String& type, const T& value) {
+  void update_label(Stream& serial, const String& label, const String& type, const T& value) {
     String updateLabel = "ST<{\"cmd_code\":\"set_" + type + "\",\"type\":\"label\",\"widget\":\"";
     updateLabel += label;
     if (type == "text") {
@@ -66,7 +66,7 @@ public:
       updateLabel += "\",\"value\":" + String(value);
     }
     updateLabel += "}>ET";
-    return updateLabel;
+    serial.println(updateLabel);
   } 
 
   /**
@@ -81,13 +81,13 @@ public:
   */
 
   template <typename T>
-  String update_mledit_text(const String& widget, const T& text) {
+  void update_mledit_text(Stream& serial, const String& widget, const T& text) {
     String updateMlEdit = "ST<{\"cmd_code\":\"set_text\",\"type\":\"mledit\",\"widget\":\"";
     updateMlEdit += widget;
     updateMlEdit += "\",\"text\":\"";
     updateMlEdit += String(text);
     updateMlEdit += "\"}>ET";
-    return updateMlEdit;
+    serial.println(updateMlEdit);
   }
 
   /**
@@ -102,13 +102,13 @@ public:
   */
 
   template <typename T>
-  String update_graph(const String& lineSeries, const T& value) {
+  void update_graph(Stream& serial, const String& lineSeries, const T& value) {
     String graphCode = "ST<{\"cmd_code\":\"set_value\",\"type\":\"line_series\",\"widget\":\"";
     graphCode += lineSeries;
     graphCode += "\",\"mode\":\"push\",\"value\":";
     graphCode += String(value);
     graphCode += "}>ET";
-    return graphCode;
+    serial.println(graphCode);
   }
 
   /**
@@ -122,11 +122,11 @@ public:
   */
 
   template <typename T>
-  String update_brightness(const T& value) {
+  void update_brightness(Stream& serial, const T& value) {
     String updateBrightness = "ST<{\"cmd_code\":\"set_brightness\",\"type\":\"system\",\"brightness\":";
     updateBrightness += String(value);
     updateBrightness += "}>ET";
-    return updateBrightness;
+    serial.println(updateBrightness);
   }
 
   /**
@@ -146,7 +146,7 @@ public:
   */
 
   template <typename T>
-  String update_volume(const char* command, const T& value) {
+  void update_volume(Stream& serial, const char* command, const T& value) {
     String updateVolume;
 
     if (strcmp(command, "set_vol") == 0) {
@@ -162,7 +162,7 @@ public:
       updateVolume = "ST<{\"cmd_code\":\"set_mute\",\"type\":\"system\",\"mute\":" + String(value ? "true" : "false") + "}>ET";
     }
 
-    return updateVolume;
+    serial.println(updateVolume);
   }
 
   /**
@@ -179,7 +179,7 @@ public:
   * example serial output:  ST<{"cmd_code":"set_max","type":"progress_bar","widget":"progressBar1","value":75}>ET
   */
 
-  String update_progress_bar(const String& value, const String& widget, int set_value){
+  void update_progress_bar(Stream& serial, const String& value, const String& widget, int set_value){
     String command = "ST<{\"cmd_code\":\"";
     command += "\",\"type\":\"progress_bar\",\"widget\":\"";
     command += widget;
@@ -193,7 +193,7 @@ public:
       command += String(set_value);
       command += "}>ET";
 
-      return command;
+      serial.println(command);
   }
 
   /**
@@ -210,7 +210,7 @@ public:
   * example serial output:  ST<{"cmd_code":"set_max","type":"progress_circle","widget":"progressCircle1","value":50}>ET
   */
 
-  String update_progress_circle(const String& value, const String& widget, int set_value) {
+  void update_progress_circle(Stream& serial, const String& value, const String& widget, int set_value) {
     String command = "ST<{\"cmd_code\":\"";
     command += value;
     command += "\",\"type\":\"progress_circle\",\"widget\":\"";
@@ -225,7 +225,7 @@ public:
     command += String(set_value);
     command += "}>ET";
 
-    return command;
+    serial.println(command);
   }
 
   /**
@@ -245,42 +245,42 @@ public:
   * example serial output:  <ST{"cmd_code":"set_value","type":"radio_button","widget":"radioButton1","value":true}>ET
   */
 
-  String update_radio_button(const String& widget, bool state) {
+  void update_radio_button(Stream& serial, const String& widget, bool state) {
       String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"radio_button\",\"widget\":\"";
       command += widget;
       command += "\",\"value\":";
       command += String(state ? "true" : "false");
       command += "}>ET";
 
-      return command;
+      serial.println(command);
   }
 
   /**
   * example serial output:  ST{"cmd_code":"set_value","type":"switch","widget":"switch1","value":true}>ET
   */
 
-  String update_switch(const String& widget, bool state){
+  void  update_switch(Stream& serial, const String& widget, bool state){
     String command = "ST{\"cmd_code\":\"set_value\",\"type\":\"switch\",\"widget\":\"";
     command += widget;
     command += "\",\"value\":";
     command += String(state ? "true" : "false");
     command += "}>ET";
 
-    return command;
+    serial.println(command);
   }
 
   /**
   * example serial output:  <ST{"cmd_code":"set_value","type":"check_button","widget":"checkButton1","value":true}>ET
   */
 
-  String update_check_button(const String& widget, bool state){
+  void update_check_button(Stream& serial, const String& widget, bool state){
     String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"check_button\",\"widget\":\"";
     command += widget;
     command += "\",\"value\":";
     command += String(state ? "true" : "false");
     command += "}>ET";
 
-    return command;
+    serial.println(command);
   }
 
 };
