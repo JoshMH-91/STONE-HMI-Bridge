@@ -23,15 +23,27 @@ Make sure to include libarary and initialize in your code with these commands:<b
 &emsp; <code>mySerial.println(myHMI.update_label("label1", "text", "your text here"));</code>
 <br/>
 <br/>
+&emsp; example serial output:
+<br/>
+&emsp; <code>ST<{"cmd_code":"set_text","type":"label","widget":"label1","text":"Hello, World!"}>ET</code><br/>
+<br/>
 <h2>•  📜 Update Multi-line text</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(update_mledit_text("MyWidget", "Example text"));</code>
 <br/>
 <br/>
+&emsp; example serial output:
+<br/>
+&emsp; <code>ST<{"cmd_code":"set_text","type":"mledit","widget":"mledit1","text":"This is a multi-line text."}>ET</code><br/>
+<br/>
 <h2>•  📈 Update Graph by pushing data</h2>
 &emsp; example function call:<br/>
 &emsp; <code>mySerial.println(update_graph("MyLineSeries", 42));</code>
 <br/>
+<br/>
+&emsp; example serial output:
+<br/>
+&emsp; <code>ST<{"cmd_code":"set_value","type":"line_series","widget":"lineSeries1","mode":"push","value":42}>ET</code><br/>
 <br/>
 <h2>•  💡 Update Screen Brightness</h2>
 &emsp; example function call:<br/>
