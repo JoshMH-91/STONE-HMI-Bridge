@@ -52,6 +52,7 @@ public:
   *
   * @example
   * update_label("MyLabel", "text", "Hello World");
+  * example serial output:  ST<{"cmd_code":"set_text","type":"label","widget":"label1","text":"Hello, World!"}>ET
   */
 
   template <typename T>
@@ -76,6 +77,7 @@ public:
   *
   * @example
   * update_mledit_text("MyWidget", "Example text");
+  * example serial output:  ST<{"cmd_code":"set_text","type":"mledit","widget":"mledit1","text":"This is a multi-line text."}>ET
   */
 
   template <typename T>
@@ -96,6 +98,7 @@ public:
   *
   * @example
   * update_graph("MyLineSeries", 42);
+  * example serial output:  ST<{"cmd_code":"set_value","type":"line_series","widget":"lineSeries1","mode":"push","value":42}>ET
   */
 
   template <typename T>
@@ -115,6 +118,7 @@ public:
   *
   * @example
   * update_brightness(50); // Set maximum brightness
+  * example serial output:  ST<{"cmd_code":"set_brightness","type":"system","brightness":75}>ET
   */
 
   template <typename T>
@@ -134,6 +138,11 @@ public:
   * @example
   * update_volume("set_vol", 20); // Set volume level to 20
   * update_volume("set_mute", true); // Mute the system
+  * example serial output
+  * Output 1:  ST<{"cmd_code":"set_vol","type":"system","vol":50}>ET
+  * Output 2:  ST<{"cmd_code":"set_vol_inc","type":"system","step":2}>ET
+  * Output 3:  ST<{"cmd_code":"set_vol_dec","type":"system","step":1}>ET
+  * Output 4:  ST<{"cmd_code":"set_mute","type":"system","mute":true}>ET
   */
 
   template <typename T>
@@ -166,6 +175,8 @@ public:
   * @example
   * update_progress_bar("set_max, "MyProgressBar", 100);
   * update_progress_bar("set_value, "MyProgressBar", 100);
+  * example serial output:  ST<{"cmd_code":"set_value","type":"progress_bar","widget":"progressBar1","value":75}>ET
+  * example serial output:  ST<{"cmd_code":"set_max","type":"progress_bar","widget":"progressBar1","value":75}>ET
   */
 
   String update_progress_bar(const String& value, const String& widget, int set_value){
@@ -195,6 +206,8 @@ public:
   * @example
   * update_progress_circle("set_max, "MyProgressCircle", 100);
   * update_progress_circle("set_value, "MyProgressCircle", 100);
+  * example serial output:  ST<{"cmd_code":"set_value","type":"progress_circle","widget":"progressCircle1","value":50}>ET
+  * example serial output:  ST<{"cmd_code":"set_max","type":"progress_circle","widget":"progressCircle1","value":50}>ET
   */
 
   String update_progress_circle(const String& value, const String& widget, int set_value) {
@@ -229,33 +242,42 @@ public:
   * Serial.println(command);
   *
   * @note The widget name should match the name of the radio button widget on the HMI.
+  * example serial output:  <ST{"cmd_code":"set_value","type":"radio_button","widget":"radioButton1","value":true}>ET
   */
 
-  String update_radio_button(const String& widget, bool state){
-    String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"radio_button\",\"widget\":\"";
-    command += widget;
-    command += "\",\"value\":";
-    command += String(state);
-    command += "}>ET";
+  String update_radio_button(const String& widget, bool state) {
+      String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"radio_button\",\"widget\":\"";
+      command += widget;
+      command += "\",\"value\":";
+      command += String(state ? "true" : "false");
+      command += "}>ET";
 
-    return command;
+      return command;
   }
+
+  /**
+  * example serial output:  ST{"cmd_code":"set_value","type":"switch","widget":"switch1","value":true}>ET
+  */
 
   String update_switch(const String& widget, bool state){
     String command = "ST{\"cmd_code\":\"set_value\",\"type\":\"switch\",\"widget\":\"";
     command += widget;
     command += "\",\"value\":";
-    command += String(state);
+    command += String(state ? "true" : "false");
     command += "}>ET";
 
     return command;
   }
 
+  /**
+  * example serial output:  <ST{"cmd_code":"set_value","type":"check_button","widget":"checkButton1","value":true}>ET
+  */
+
   String update_check_button(const String& widget, bool state){
     String command = "<ST{\"cmd_code\":\"set_value\",\"type\":\"check_button\",\"widget\":\"";
     command += widget;
     command += "\",\"value\":";
-    command += String(state);
+    command += String(state ? "true" : "false");
     command += "}>ET";
 
     return command;
