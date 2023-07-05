@@ -18,7 +18,7 @@ Please ensure that you replace the placeholder "mySerial" with the appropriate n
 <br/>
 <h2>•  🖥️ Parse incoming command and data</h2>
 &emsp; example function call:<br/>
-&emsp; <code>myHMI.parseData(mySerial, cmd, data)</code></br>
+&emsp; <code>myHMI.parseData(mySerial, cmd, data)</code> (this code will return both the cmd and data values)</br>
 <h2>•  🏷️ Update Label as value or text</h2>
 &emsp; example function call:<br/>
 &emsp; <code>myHMI.update_label(mySerial, "label1", "value", 100);</code>
