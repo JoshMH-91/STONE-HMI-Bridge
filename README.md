@@ -48,6 +48,16 @@ Please ensure that you replace the placeholder "mySerial" with the appropriate n
 <br/>
 &emsp; <code>ST<{"cmd_code":"set_value","type":"line_series","widget":"lineSeries1","mode":"push","value":42}>ET</code><br/>
 <br/>
+<h2>•  📈 Update Graph Data</h2>
+&emsp; example function call:<br/>
+&emsp; <code>update_graph_data(mySerial, "x_axis", "x_axis1", "0,1,2,3,4,5,6,7,8,9,10");</code> (can be x or y axis)
+<br/>
+<br/>
+<h2>•  📈 Update Graph Range</h2>
+&emsp; example function call:<br/>
+&emsp; <code>update_graph_data(mySerial, "x_axis", "x_axis1", 0, 100)</code> (can be x or y axis)
+<br/>
+<br/>
 <h2>•  💡 Update Screen Brightness</h2>
 &emsp; example function call:<br/>
 &emsp; <code>update_brightness(mySerial, 75);</code>
