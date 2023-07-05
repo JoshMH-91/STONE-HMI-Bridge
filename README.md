@@ -1,7 +1,7 @@
 # Stone-HMI-Bridge-Library
 This library provides simplified functions for sending JSON commands to a STONE HMI and parsing data.
 <br/><br/>
-🚧 This Library and page is under construction and only includes basic functionality.
+🚧 This Library and page is under construction.
 <br/>
 <h2>📚 Library Functions currenlty supported</h2>
 These functions only return the JSON string you must send them through a serial print command to your HMI.
