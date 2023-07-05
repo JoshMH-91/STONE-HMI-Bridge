@@ -34,7 +34,7 @@ bool StoneHmiBridge::parseData(Stream& serial, String& cmd, String& data) {
   if (bytesRead > 0) {
 
 
-    // Print the bytes in hexadecimal format without the 0x prefix
+    // return command cmd
     for (int i = 3; i < 5; i++) {
         if (String(buffer[i], HEX) == "1"){
             cmd += "0";
@@ -42,10 +42,10 @@ bool StoneHmiBridge::parseData(Stream& serial, String& cmd, String& data) {
       cmd += String(buffer[i], HEX);
     }
 
-    int dataLength = bytesRead - 6;
+    int dataEndPos = bytesRead - 6;
 
-    // Print the bytes in hexadecimal format without the 0x prefix
-    for (int i = 7; i < dataLength; i++) {
+    // return data 
+    for (int i = 7; i < dataEndPos; i++) {
       char character = char(buffer[i]);
       data += character;
     }

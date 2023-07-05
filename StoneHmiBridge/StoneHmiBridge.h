@@ -112,6 +112,50 @@ public:
   }
 
   /**
+  * This function updates the range of a graph widget on an HMI by sending a formatted command through a serial connection.
+  * @param serial The serial stream for sending the command
+  * @param axis The type of axis to update (x_axis or y_axis)
+  * @param axisName The name of the widget representing the axis
+  * @param min The minimum value of the chart range
+  * @param max The maximum value of the chart range
+  * The function constructs a JSON-like command string and sends it via the serial connection.
+  */
+
+  template <typename T>
+  void update_graph_range(Stream& serial, const String& axis, const String& axisName, const T& min, const T& max) {
+      String command = "ST<{\"cmd_code\":\"set_range\",\"type\":\"";
+      command += axis;
+      command += "\",\"widget\":\"";
+      command += axisName;
+      command += "\",\"min\":";
+      command += min;
+      command += ",\"max\":";
+      command += max;
+      command += "}ET";
+      serial.println(command);
+  }
+
+  /**
+  * This function updates a graph on the HMI by sending a formatted command through a serial connection.
+  * @param serial The serial stream for sending the command
+  * @param axis The type of axis to update (x_axis or y_axis)
+  * @param axisName The name of the widget representing the axis
+  * @param data The data points to update on the axis. (example:  "0,1,2,3,4,5,6,7,8,9,10")
+  * example function call:  myHMI.update_graph_data(mySerial, "x_axis", "x_axis1", "0,1,2,3,4,5,6,7,8,9,10");
+  */
+
+  void update_graph_data(Stream& serial, const String& axis, const String& axisName, String& data){
+    String command = "ST<{\"cmd_code\":\"set_data\",\"type\":\"";
+    command += axis;
+    command += "\",\"widget\":\"";
+    command += axisName;
+    command += "\",\"data\":\"[";
+    command += data;
+    command += "]\"}>ET";
+    serial.println(command);
+  }
+
+  /**
   * This function sets the brightness of the HMI system.
   *
   * @param value The new brightness level.
